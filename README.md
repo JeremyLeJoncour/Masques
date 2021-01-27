@@ -6,11 +6,11 @@ La première étape consistait à réaliser notre dataset Train et Test. Après 
 
 La deuxième étape était de préparer les images pour l'entrainement de notre modèle. Nous avons donc resize en 96x96 pixels les images puis reshape nos données x_app (train) en [-1, 96, 96, 3] (images en couleur).
 
-Ce modèle contient 3 couches avec une activation par défaut reLu sur les deux premières et une activation sigmoid sur la dernière couche. La fonction loss *binary_crossentropy* a été choisie par défaut, et utiliser pour les problèmes de classification binaire où les valeurs cibles sont dans l'ensemble [0, 1] (without_mask, with_mask).
+Ce modèle contient 3 couches avec une activation par défaut reLu sur les deux premières et une activation sigmoid sur la dernière couche. La fonction loss *binary_crossentropy* a été choisie par défaut, et utilisée pour les problèmes de classification binaire où les valeurs cibles sont dans l'ensemble [0, 1] (without_mask, with_mask ici).
 
-Pour un soucis d'optimisation, le modèle initial possédait un input_shape [96, 96, 1] car il traitait des images en nuance de gris `-1, 96, 96, 1`. Nous sommes passés à un modèle traitant des images en RGB `-1, 96, 96, 3`, qui faciliterait la detection du masque lors de l'implémentation du modèle sur des traitements vidéo.
+Pour un soucis d'optimisation, le modèle initial possédait un input_shape `[96, 96, 1]` car il traitait des images en nuance de gris `-1, 96, 96, 1`. Nous sommes passés à un modèle traitant des images en RGB `-1, 96, 96, 3`, qui faciliterait la detection du masque lors de l'implémentation du modèle sur des traitements vidéo.
 
-L'évaluation de notre modèle sur les données tests se présente ainsi : loss: 0.1914 - accuracy: 0.9692
+L'évaluation de notre modèle sur les données tests se présente ainsi : `loss: 0.1914 - accuracy: 0.9692`
 
 Sur la matrice de confusion : Notre modèle classe correctement 189 images de notre dataset test (94 pour la classe sans masque = 0 ; 95 pour la classe avec masque = 1). Seul 6 images ne sont pas définies correctement par notre modèle (4 images sans masque sont considérés comme représentant des personnes avec des masques, et inversement, 2 images représentant des gens avec masques sont considérés sans masque).
 
